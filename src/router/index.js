@@ -49,6 +49,7 @@ const router = new VueRouter({
         },
         {
             path:"/Collect",
+            name:'Collect',
             component:()=>import("../views/mine/Collect.vue"),
             meta:{tabbar:true},
         },
