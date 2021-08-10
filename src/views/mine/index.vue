@@ -9,13 +9,12 @@
 
     <router-link class="link-to" :to="{name:'Collect'}"><span>我的收藏</span><i>></i></router-link>
     <router-link class="link-to" :to="{name:'Address'}"><span>地址管理</span><i>></i></router-link>
-    <router-link class="link-to" :to="{name:'Bank'}"><span>我的银行</span><i>></i></router-link>
     <router-link class="link-to" :to="{name:'Appraise'}"><span>我的评价</span><i>></i></router-link>
     <router-link class="link-to" :to="{name:'ChangeInfo',
     query:{
       nickName:user.nickName,
       avatar:user.avatar}}">
-      <span>个人信息</span><i>></i></router-link>
+      <span>个人信息修改</span><i>></i></router-link>
   <button style="background:gray;" @click="logOut">退出登录</button>
   </div> 
 </template>
