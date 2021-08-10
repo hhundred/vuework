@@ -14,15 +14,38 @@
             </van-swipe-item>
         </van-swipe>
         <!-- 商品展示 v-for="item in products" :key="item._id"-->
-        <van-grid :gutter="10">
-            <van-grid-item v-for="item in products" :key="item._id" :icon="item.coverImg" :text="item.name">
+        <van-grid :border="false" :column-num="4">
+            <van-grid-item to="/pro">
+                <van-icon name="hot-sale" size="40" color="red"/>排行榜
+            </van-grid-item>
+            <van-grid-item to="/pro">
+                <van-icon name="medal" size="40" color="orange"/>品牌
+            </van-grid-item>
+            <van-grid-item to="/mine">
+                <van-icon name="lock" size="40" color="lightblue"/>安全
+            </van-grid-item>
+            <van-grid-item to="/pro">
+                <van-icon name="more" size="40" color="yellowgreen"/>更多
+            </van-grid-item>
+        </van-grid>
+        <!-- 倒计时 -->
+        <van-divider :style="{ color: '#000', borderColor: '#1989fa', padding: '0 5px' }">
+            抢购倒计时：
+            <van-count-down :time="time" format="DD 天 HH 时 mm 分 ss 秒" />
+        </van-divider>
+
+        <van-tag type="success">新品</van-tag>
+        <van-grid :border="false" :column-num="2" >
+            <van-grid-item v-for="item in products" :key="item._id">
+                <van-image :src="item.coverImg" />
+                {{item.name}}<span style="color:red">￥{{item.price}}</span>
             </van-grid-item>
         </van-grid>
     </div>
 </template>
 
 <script>
-// import {loadProductsApi} from "../../api/products"
+import {loadProductsApi} from "../../api/products"
 
 export default {
     components: {},
@@ -33,7 +56,8 @@ export default {
                 // 'https://img01.yzcdn.cn/vant/apple-2.jpg',
             ],
             value:'',//搜索
-            products:[]//所有商品
+            products:[],//所有商品
+            time: 30 * 60 * 60 * 1000,
         };
     },
     computed: {},
@@ -48,7 +72,7 @@ export default {
         },
         // 获取商品
         async loadPro(){
-            const result = await loadProductsApi()
+            const result = await loadProductsApi({per:6})
             // console.log(result.data.products);
             this.products = result.data.products
         }
@@ -62,5 +86,17 @@ export default {
 }
 </script>
 <style scoped>
-    
+    .colon {
+    display: inline-block;
+    margin: 0 4px;
+    color: #ee0a24;
+  }
+   .block {
+    display: inline-block;
+    width: 22px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    background-color: #ee0a24;
+  }
 </style>
