@@ -1,5 +1,5 @@
 <template>
-    <div class='ChangeInfo'>个人信息</div>
+    <div class='ChangeInfo'>修改个人信息</div>
 </template>
 
 <script>
