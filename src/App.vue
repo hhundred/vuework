@@ -6,7 +6,7 @@
     <van-tabbar v-model="active" route v-if="this.$route.meta.tabbar">
       <van-tabbar-item icon="home-o" to="/home">首页</van-tabbar-item>
       <van-tabbar-item icon="search" to="/pro">商品</van-tabbar-item>
-      <van-tabbar-item icon="friends-o" to="/find">发现</van-tabbar-item>
+      <van-tabbar-item icon="cart-circle-o" to="/cart">购物车</van-tabbar-item>
       <van-tabbar-item icon="setting-o" to="/mine">我的</van-tabbar-item>
     </van-tabbar>
   </div>

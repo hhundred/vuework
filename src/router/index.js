@@ -32,8 +32,8 @@ const router = new VueRouter({
             meta:{tabbar:true},
         },
         {
-            path:"/find",
-            component:()=>import("../views/find"),
+            path:"/cart",
+            component:()=>import("../views/cart"),
             meta:{tabbar:true},
         },
         {

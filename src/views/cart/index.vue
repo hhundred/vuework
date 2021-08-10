@@ -1,6 +1,6 @@
 <template>
-    <div class='find'>
-        发现
+    <div class='cart'>
+        <h1>我的购物车</h1>
     </div>
 </template>
 
