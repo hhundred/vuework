@@ -1,4 +1,4 @@
-import { post, get } from "../utils/request";
+import { post, get,dele } from "../utils/request";
 //这里是用来封装调接口的，这一个文件是post，put，get都存在的请求
 
  /**
@@ -6,7 +6,7 @@ import { post, get } from "../utils/request";
   * @param {*} params
   * @returns
   */
- export const loadProductsApi = (params = {}) => get("/api/v1/products", params);
+ export const loadProductsApi = (params) => get("/api/v1/products", params);
  
  /**
   * 获取详情
@@ -37,5 +37,5 @@ import { post, get } from "../utils/request";
   * @returns
   */
   // eslint-disable-next-line no-undef
-  export const delFromCartApi = (id) => del("/api/v1/shop_carts/" + id);
+  export const delFromCartApi = (id) => dele("/api/v1/shop_carts/" + id);
  
