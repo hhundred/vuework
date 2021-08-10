@@ -20,7 +20,6 @@
 </template>
 
 <script>
-// import {loadUserInfoApi} from '../services/auth'
 import {loadUserInfoApi,removeToken} from '../../utils/auth'
 export default {
 data(){

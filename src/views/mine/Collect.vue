@@ -1,5 +1,14 @@
 <template>
-    <div class='collect'>我的收藏</div>
+    <div class='collect'>
+        <van-nav-bar
+      :fixed="true"
+      :placeholder="true"
+      title="收藏"
+      left-text="返回"
+      left-arrow
+      @click-left="onClickLeft"
+    />
+  </div>
 </template>
 
 <script>
@@ -16,7 +25,9 @@ export default {
     watch: {},
     
     methods: {
-        
+          onClickLeft() {
+           this.$router.go(-1);
+         },
     },
     created() {
         
