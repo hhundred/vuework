@@ -50,6 +50,7 @@ import {
   addToCartApi,
   delFromCartApi,
 } from "../../api/products";
+
 export default {
   name: "cart",
   data() {
