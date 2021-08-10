@@ -1,7 +1,7 @@
 <template>
   <div class="info">
     <img class="avatar" src="../../assets/93.jpg" alt="头像">
-    <p>{{users.nickName?users.nickName:'西楼'}}</p>
+    <p>{{user.nickName?user.nickName:'西楼'}}</p>
     <br>
     <router-link class="link-to"><span>我的钱包</span><i>4900.0</i></router-link>
 
@@ -12,8 +12,8 @@
     <router-link class="link-to" :to="{name:'Appraise'}"><span>我的评价</span><i>></i></router-link>
     <router-link class="link-to" :to="{name:'ChangeInfo',
     query:{
-      nickName:users.nickName,
-      avatar:users.avatar}}">
+      nickName:user.nickName,
+      avatar:user.avatar}}">
       <span>个人信息修改</span><i>></i></router-link>
   <button style="background:gray;" @click="logOut">退出登录</button>
   </div> 
