@@ -49,7 +49,7 @@ import {
   loadCartApi,
   addToCartApi,
   delFromCartApi,
-} from "";
+} from "../../api/products";
 export default {
   name: "cart",
   data() {

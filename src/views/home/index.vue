@@ -22,7 +22,7 @@
 </template>
 
 <script>
-// import {loadProductsApi} from "../../api/products"
+import {loadProductsApi} from "../../api/products"
 
 export default {
     components: {},
