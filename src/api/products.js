@@ -21,11 +21,13 @@ import { post, get,dele } from "../utils/request";
   * 加入购物车
   * @param {*} data
   *  product 商品id
-  *  amount  数量，如果是减传-1
-  *  price   价格
+  *  quantity  数量1
   * @returns
   */
- export const addToCartApi = (data) => post("/api/v1/shop_carts", data);
+ export const addToCartApi = (product,quantity=1) => post("/api/v1/shop_carts", {
+    product,
+    quantity,
+});
  
  /**
   * 加载购物车数据

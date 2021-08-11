@@ -107,7 +107,7 @@ export default {
         // 加入购物车
         async addcart(id){
             const result = await addToCartApi(id)
-            console.log(result);
+            // console.log(result);
             if(result.data.code=="success"){
                 Dialog.confirm({
                 title: '加入购物车成功',
