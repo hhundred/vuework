@@ -44,32 +44,32 @@ const router = new VueRouter({
         {
             path:"/mine",
             name:'mine',
-            component:()=>import("../views/mine"),
+            component:()=>import("../views/mine/index.vue"),
             meta:{tabbar:true},
         },
         {
             path:"/Collect",
             name:'Collect',
             component:()=>import("../views/mine/Collect.vue"),
-            meta:{tabbar:true},
+            meta:{tabbar:false},
         },
         {
             path:"/Address",
             name:'Address',
             component:()=>import("../views/mine/Address.vue"),
-            meta:{tabbar:true},
+            meta:{tabbar:false},
         },
         {
             path:"/Appraise",
             name:'Appraise',
             component:()=>import("../views/mine/Appraise.vue"),
-            meta:{tabbar:true},
+            meta:{tabbar:false},
         },
         {
             path:"/ChangeInfo",
             name:'ChangeInfo',
             component:()=>import("../views/mine/ChangeInfo.vue"),
-            meta:{tabbar:true},
+            meta:{tabbar:false},
         },
         // 详情
         {
