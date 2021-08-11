@@ -39,8 +39,6 @@ methods:{
         if(res.data.code==='success'){
         setToken(this.userName);
         setToken(this.password);
-        console.log(this.userName);
-        console.log(this.password);
          this.$router.push('/mine')
         }else{
         alert(this.userName,this.password)
