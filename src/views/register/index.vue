@@ -1,90 +1,103 @@
 <template>
-  <div>
-    <div class="register">
-      <img src="../../assets/93.jpg" alt="">
-      <input type="text" v-model="userName" placeholder="请输入账号">
-      <br>
-      <input type="password" v-model="password" placeholder="请输入密码">
-      <br>
-      <input type="password" v-model="repwd" placeholder="请再次输入密码">
-      <br>
-      <button @click="regHandle">注册</button>
-      <br>
-      <router-link :to="{name:'login'}">已有账号我要登录</router-link>
+    <div class='reg'>
+        <van-nav-bar title="注册" />
+        <!-- 上传图片 -->
+        <span>上传头像</span>
+        <van-uploader :after-read="afterRead" />
+        <!-- 显示图片 -->
+        <img :src="imgUrl" alt="" width="200px" height="200px" v-if="imgUrl">
+        <!-- 注册 -->
+        <van-form @submit="onSubmit">
+            <van-field
+                v-model="username"
+                name="userName"
+                label="用户名"
+                placeholder="用户名"
+                :rules="[{ required: true, message: '请填写用户名' }]"
+            />
+            <van-field
+                v-model="password"
+                type="password"
+                name="password"
+                label="密码"
+                placeholder="密码"
+                :rules="[{ required: true, message: '请填写密码' }]"
+            />
+            <van-field
+                v-model="nickName"
+                name="nickName"
+                label="昵称"
+                placeholder="昵称"
+                :rules="[{ required: true, message: '请填写昵称' }]"
+            />
+            <div style="margin: 16px;">
+                <van-button round block type="info" native-type="submit">注册</van-button>
+            </div>
+        </van-form>
     </div>
-  </div>
 </template>
 
 <script>
-import {regApi} from '../../api/user'
-import {setToken} from '../../utils/auth'
-export default {
-data(){
-  return{
-    userName:'',
-    password:'',
-    repwd:''
-  }
-},
-methods:{
- async regHandle(){
-    if(this.userName&&this.password&&this.repwd){
-      if(this.password==this.repwd){
-        const res=await regApi({
-        userName:this.userName,
-        password:this.password,
-        })
-        console.log(this.userName);
-        console.log(this.password);
-        if(res.data.code==='success'){
-        setToken(this.userName);
-        setToken(this.password);
-         this.$router.push('/mine')
-        }else{
-        alert(this.userName,this.password)
-        }
-            }else 
-            {
-                alert('两次输入密码不一致')
-            }
-            }else{
-            alert('请输入注册信息')
-            }
-     }
- }
-}
-</script>
+//引入注册api
+import {regApi} from "../../api/user"
+// 引入vant提供的Toast
+import {Toast} from "vant"
 
+export default {
+    components: {},
+    data() {
+        return {
+            username: '',
+            password: '',
+            imgUrl:'',
+            nickName:'',
+        };
+    },
+    computed: {},
+    watch: {},
+    
+    methods: {
+        // vant提供---上传文件中的回调函数，获取到对应的 file 对象
+        afterRead(file) {
+            // 此时可以自行将文件上传至服务器
+            // console.log(file);
+            this.imgUrl = file.content
+        }, 
+        //表单提交---vant提供
+        async onSubmit(values){
+            //values：提交的用户名，密码，昵称对象
+            // console.log('submit', values);
+            //...将value对象扒皮
+            //判断无图片提示需上传图片---使用vant中的Toast轻提示
+            if(this.imgUrl){
+                const result = await regApi({...values,avatar:this.imgUrl})
+                console.log(result)
+                if(result.data.code=="success"){
+                    Toast("注册成功")//弹框提示
+                    this.$router.push("/login")
+                }
+            }else{
+                //使用失败提示
+                Toast.fail("请上传头像")
+            }
+        },
+    },
+    created() {
+        
+    },
+    mounted() {
+        
+    },
+    }
+</script>
 <style scoped>
-.register{
-  margin: 0 auto;
-}
-input,button,a{
-  display: block;
-  margin:0 auto;
-}
-input{
-  width: 60%;
-  height:8vw;
-}
-button{
-  color: #fff;
-  background: #f67000;
-  border:none;
-  width: 30vw;
-  height: 8vw;
-  font-size:1rem ;
-}
-.register a{
-  text-align: center;
-  font-size: 14px;
-  color: #f67000;
-}
-.register img{
-  text-align: center;
-display: block;
-  width: 60%;
-  margin:3rem auto;
-  border-radius: 30%;
-}
+    span{
+      font-size: 14px;
+      color: #333;
+      margin:0 40px 0 15px;
+    }
+    img{
+      display: block;
+      margin: 0 auto;
+    }
 </style>
