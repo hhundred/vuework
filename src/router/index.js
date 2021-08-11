@@ -71,6 +71,13 @@ const router = new VueRouter({
             component:()=>import("../views/mine/ChangeInfo.vue"),
             meta:{tabbar:true},
         },
+        // 详情
+        {
+            path:"/detail/:id",
+            name:'Detail',
+            component:()=>import("../views/detail"),
+            meta:{tabbar:false},
+        },
     ],
     linkActiveClass:"active",//设置点击高亮class属性
 })
