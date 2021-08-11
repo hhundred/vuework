@@ -7,7 +7,9 @@ import { post, get,dele } from "../utils/request";
   * @returns
   */
  export const loadProductsApi = (params) => get("/api/v1/products", params);
- 
+ //  商品分类
+ export const loadProductsKindApi = (params) => get("./api/v1/product_categories", params);
+
  /**
   * 获取详情
   * @param {*} id

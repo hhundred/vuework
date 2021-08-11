@@ -33,7 +33,16 @@
         <!-- 倒计时 -->
         <van-divider :style="{ color: '#000', borderColor: '#1989fa', padding: '0 5px' }">
             抢购倒计时：
-            <van-count-down :time="time" format="DD 天 HH 时 mm 分 ss 秒" />
+            <van-count-down :time="time">
+                <template #default="timeData">
+                    <span class="block">{{ timeData.hours }}</span>
+                    <span class="colon">:</span>
+                    <span class="block">{{ timeData.minutes }}</span>
+                    <span class="colon">:</span>
+                    <span class="block">{{ timeData.seconds }}</span>
+                </template>
+            </van-count-down>
+            <!-- <van-count-down :time="time" format="DD 天 HH 时 mm 分 ss 秒" /> -->
         </van-divider>
         <van-grid :border="false" :column-num="3" >
             <van-grid-item v-for="item in daoproducts" :key="item._id" @click="godetail(item._id)">
@@ -42,8 +51,9 @@
                 <span style="color:red">￥{{item.price*0.01}}</span>
             </van-grid-item>
         </van-grid>
-
-        <van-tag type="success">新品</van-tag>
+        <van-divider content-position="left">
+            <van-tag type="success">新品</van-tag>
+        </van-divider>
         <van-grid :border="false" :column-num="2" >
             <van-grid-item v-for="item in products" :key="item._id" @click="godetail(item._id)">
                 <van-image :src="item.coverImg" />
