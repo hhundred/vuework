@@ -85,7 +85,6 @@ export default {
   },
   created() {
     this.loadData();
-    this.delFromCart()
   },
   methods: {
     //获取购物车列表

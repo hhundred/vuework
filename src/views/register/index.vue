@@ -34,6 +34,9 @@
                 <van-button round block type="info" native-type="submit">注册</van-button>
             </div>
         </van-form>
+        <router-link to="/login">
+            <p class="txt">已有账号？去登录</p>
+        </router-link>
     </div>
 </template>
 
@@ -99,5 +102,10 @@ export default {
     img{
       display: block;
       margin: 0 auto;
+    }
+    .txt{
+        font-size: 14px;
+        color: orange;
+        text-align: center;
     }
 </style>
