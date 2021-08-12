@@ -60,6 +60,12 @@ const router = new VueRouter({
             meta:{tabbar:false},
         },
         {
+            path:"/Addresslist",
+            name:'Addresslist',
+            component:()=>import("../views/mine/Addresslist.vue"),
+            meta:{tabbar:false},
+        },
+        {
             path:"/Appraise",
             name:'Appraise',
             component:()=>import("../views/mine/Appraise.vue"),

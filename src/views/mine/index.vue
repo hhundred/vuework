@@ -8,7 +8,7 @@
       <van-cell title="" value="4900.0" label="我的钱包" />
 
     <router-link class="link-to" :to="{name:'Collect'}"><span>我的收藏</span><i>></i></router-link>
-    <router-link class="link-to" :to="{name:'Address'}"><span>地址管理</span><i>></i></router-link>
+    <router-link class="link-to" :to="{name:'Addresslist'}"><span>地址管理</span><i>></i></router-link>
     <router-link class="link-to" :to="{name:'Appraise'}"><span>我的评价</span><i>></i></router-link>
     <router-link class="link-to" :to="{name:'ChangeInfo',
     query:{

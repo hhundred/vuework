@@ -9,29 +9,30 @@
       @click-left="onClickLeft"
     />
     <van-swipe-cell v-for="value in carts" :key="value._id">
-      <!-- 单选按钮 -->
-        <!-- <template #tag>
-          <van-checkbox v-model="value.checked" />
-        </template> -->
+ 
 
       <van-card
         :num="value.quantity"
-        :price="value.product.price*0.01"
+        :price="value.product.price"
         :title="value.product.name"
         :thumb="value.product.coverImg"
       >
+           <!-- 单选按钮 -->
+        <template #tag>
+          <van-checkbox v-model="value.checked" />
+        </template>
       <!-- 数量加减 -->
-        <!-- <template #footer>
+        <template #footer>
           <van-stepper
             v-model="value.quantity"
             @plus="plusHandle(value)"
             @minus="minusHandle(value)"
           />
-        </template> -->
+        </template>
         
       </van-card>
       <!-- 右滑删除按钮 -->
-      <!-- <template #right>
+      <template #right>
         <van-button
           @click="delFromCart(value._id)"
           square
@@ -39,22 +40,23 @@
           type="danger"
           class="delete-button"
         />
-      </template> -->
+      </template>
     </van-swipe-cell>
 
-    <!-- <van-submit-bar :price="sumPrice * 100" button-text="提交订单">
+    <van-submit-bar :price="sumPrice * 100" button-text="提交订单">
       <van-checkbox v-model="checkAll">全选</van-checkbox>
-    </van-submit-bar> -->
+    </van-submit-bar>
   </div>
 </template>
 
 <script>
+
 import { Toast } from "vant";
 import {
   loadCartApi,
   delFromCartApi,
+  addToCartApi,
 } from "../../api/products";
-  // addToCartApi,
 
 export default {
   name: "cart",
@@ -64,19 +66,22 @@ export default {
     };
   },
   computed: {
-    // checkAll: {
-    //   set(v) {
-    //     this.carts.forEach((value) => (value.checked = v));
-    //   },
-    //   get() {
-    //     return this.carts.every((value) => value.checked);
-    //   },
-    // },
-    // sumPrice() {
-    //   return this.carts
-    //     .filter((value) => value.checked)
-    //     .reduce((pre, cur) => pre + cur.price * cur.amount, 0);
-    // },
+    checkAll: {
+      set(v) {
+        this.carts.forEach((value) => (value.checked = v));
+      },
+      get() {
+        return this.carts.every((value) => value.checked);
+      },
+      
+    },
+    sumPrice() {
+      console.log(this.carts);
+      return this.carts
+        .filter((value) => value.checked)
+        .reduce((pre, cur) => pre + cur.price * cur.quantity, 0);
+      
+    },
   },
   created() {
     this.loadData();
@@ -87,7 +92,10 @@ export default {
     async loadData() {
       const res = await loadCartApi();
       console.log(res.data);
-      this.carts = res.data
+       this.carts = res.data.map((value) => ({
+        ...value,
+        checked: false,
+      }));
     },
     //购物车删除
     async delFromCart(id) {
@@ -96,20 +104,21 @@ export default {
       Toast.success("删除成功");
     },
     //购物车数量增加  刷新不变
-    // async plusHandle(value) {
-    //   await addToCartApi({
-    //     product: value.product.id,
-    //     quantity: 1,
-    //   });
-    // },
+    async plusHandle(value) {
+      await addToCartApi({
+        product: value.product._id,
+        price: value.product.price,
+        quantity: 1,
+      });
+    },
     // 购物车数量减少  刷新不变
-    // async minusHandle(value) {
-    //   await addToCartApi({
-    //     product: value.product.id,
-    //     price: value.product.price,
-    //     amount: -1,
-    //   });
-    // },
+    async minusHandle(value) {
+      await addToCartApi({
+        product: value.product._id,
+        price: value.product.price,
+        quantity: -1,
+      });
+    },
     onClickLeft() {
       this.$router.go(-1);
     },

@@ -48,7 +48,7 @@
             <van-grid-item v-for="item in daoproducts" :key="item._id" @click="godetail(item._id)">
                 <van-image :src="item.coverImg" />
                 <span>{{item.name}}</span>
-                <span style="color:red">￥{{item.price*0.01}}</span>
+                <span style="color:red">￥{{item.price}}</span>
             </van-grid-item>
         </van-grid>
         <van-divider content-position="left">
@@ -57,7 +57,7 @@
         <van-grid :border="false" :column-num="2" >
             <van-grid-item v-for="item in products" :key="item._id" @click="godetail(item._id)">
                 <van-image :src="item.coverImg" />
-                {{item.name}}<span style="color:red">￥{{parseInt(item.price*0.01)}}</span>
+                {{item.name}}<span style="color:red">￥{{parseInt(item.price)}}</span>
             </van-grid-item>
         </van-grid>
         

@@ -38,7 +38,7 @@
                     <van-tag plain type="primary">库存{{product.quantity}}</van-tag>
                     {{product.name}}
                     
-                    <span style="color:red">￥{{product.price*0.01}}</span>
+                    <span style="color:red">￥{{product.price}}</span>
                 </div>
             </van-grid-item>
         </van-grid>
@@ -97,7 +97,7 @@ export default {
         // 获取详情
         async getDetail(id){
             const result = await loadProductDetailApi(id)
-            // console.log(result.data);
+            console.log(result.data);
             this.product = result.data
         },
         // 点击图片查看大图
