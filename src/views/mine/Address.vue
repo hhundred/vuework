@@ -28,18 +28,17 @@
 <script>
 import { Toast } from 'vant';
 import areaList from '../../utils/area'
-// import { setToken } from '../../utils/auth';
-// import addressesApi from '../../api/address'
+import addressesApi from '../../api/address'
 export default {
     
     components: {},
     data() {
         return { 
-          receiver:'',
-          mobile:'',
-          region:'',
-          address:'',
-          idDefault:'',
+          // receiver:'',
+          // mobile:'',
+          // region:'',
+          // address:'',
+          // idDefault:'',
           areaList,
           searchResult: [],  
 
@@ -49,13 +48,31 @@ export default {
     watch: {},
     
     methods: {
-
+       async onSave(){
+    await addressesApi({
+      nickName:this.nickName,
+      avatar:this.avatar,
+     })
+this.$router.push({name:'mine'})
+       },
     
-      onSave() {
-      Toast('save');
-      // setToken()
-      this.$router.push("/Addresslist")
-    },
+//    async onSave() {
+//  window.console.log('确认')
+//       const result = await addressesApi()
+//             // console.log(result);
+//             if(result.data.code=="success"){
+//                   Toast('save')
+//                 .then(() => {
+//                     this.$router.push("/Addresslist") 
+//                 })
+//                 .catch(() => {
+                    
+//                 });
+//             }
+
+      // Toast('save');
+      // this.$router.push("/Addresslist")
+    // },
     onDelete() {
       Toast('delete');
     },

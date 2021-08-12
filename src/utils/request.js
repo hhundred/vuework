@@ -35,4 +35,4 @@ export const post = (url, data) => instance.post(url, data);
 
 export const dele = (url, params) => instance.delete(url,{ params })
 
-export default instance;
+// export default instance;

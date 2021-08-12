@@ -8,6 +8,14 @@
       left-arrow
       @click-left="onClickLeft"
     />
+     <van-cell-group>
+  <van-cell title="小小鼠标垫" value="￥89" label="库存:131" />
+  <div class="collect-btn">
+  <van-button type="info">取消收藏</van-button>
+  <van-button type="danger">立即购买</van-button>
+  <van-button type="warning">加入购物车</van-button>
+  </div>
+</van-cell-group>
   </div>
 </template>
 
@@ -38,5 +46,10 @@ export default {
     }
 </script>
 <style scoped>
-    
+.collect-btn{
+display: flex;
+align-items: center;
+justify-content: space-around;
+
+}
 </style>
