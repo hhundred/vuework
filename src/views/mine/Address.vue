@@ -3,24 +3,24 @@
         <van-nav-bar
       :fixed="true"
       :placeholder="true"
-      title="收货地址"
+      title="添加收货地址"
       left-text="返回"
       left-arrow
       @click-left="onClickLeft"
     />
     <van-address-edit
-  :area-list="areaList"
-  show-postal
-  show-delete
-  show-set-default
-  show-search-result
-  :search-result="searchResult"
-  :area-columns-placeholder="['请选择', '请选择', '请选择']"
-  @save="onSave"
-  @delete="onDelete"
-  @change-detail="onChangeDetail"
-/>
-    </div>
+      :area-list="areaList"
+      show-postal
+      show-delete
+      show-set-default
+      show-search-result
+      :search-result="searchResult"
+      :area-columns-placeholder="['请选择', '请选择', '请选择']"
+      @save="onSave"
+      @delete="onDelete"
+      @change-detail="onChangeDetail"
+    />
+  </div>
 
     
 </template>
@@ -28,24 +28,32 @@
 <script>
 import { Toast } from 'vant';
 import areaList from '../../utils/area'
-import { setToken } from '../../utils/auth';
+// import { setToken } from '../../utils/auth';
+// import addressesApi from '../../api/address'
 export default {
     
     components: {},
     data() {
-        
         return { 
+          receiver:'',
+          mobile:'',
+          region:'',
+          address:'',
+          idDefault:'',
           areaList,
-            searchResult: [],  
+          searchResult: [],  
+
         };
     },
     computed: {},
     watch: {},
     
     methods: {
-       onSave() {
+
+    
+      onSave() {
       Toast('save');
-      setToken()
+      // setToken()
       this.$router.push("/Addresslist")
     },
     onDelete() {
